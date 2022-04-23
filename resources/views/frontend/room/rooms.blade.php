@@ -27,7 +27,7 @@
     </section>
 
     <!-- Filter -->
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <ul class="nav nav-pills" id="filters">
@@ -39,7 +39,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Rooms -->
     <section class="rooms mt100">
@@ -49,7 +49,9 @@
                 @foreach ($room_data as $item)
                 <div class="col-sm-4 single">
                     <div class="room-thumb">
-                        <img src="{{ asset('frontend/assets/images/rooms/room-01.jpg') }}" alt="room 1" class="img-responsive" />
+                        @foreach ($item->roomTypeImages as $img)
+                            <img src="{{ asset($img->img_src) }}" alt="room 1" style="object-fit: cover" class="img-responsive" />
+                        @endforeach
                         <div class="mask">
                             <div class="main">
                                 <h5>{{ $item->roomType->room_type_title }}</h5>
@@ -57,23 +59,6 @@
                             </div>
                             <div class="content">
                                 <p>{{ $item->roomType->room_type_details }}</p>
-                                {{-- <div class="row">
-                                    <div class="col-xs-6">
-                                        <ul class="list-unstyled">
-                                            <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
-                                            <li><i class="fa fa-check-circle"></i> Private balcony</li>
-                                            <li><i class="fa fa-check-circle"></i> Sea view</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <ul class="list-unstyled">
-                                            <li><i class="fa fa-check-circle"></i> Free Wi-Fi</li>
-                                            <li><i class="fa fa-check-circle"></i> Incl. breakfast</li>
-                                            <li><i class="fa fa-check-circle"></i> Bathroom</li>
-                                        </ul>
-                                    </div>
-                                </div> --}}
-                                {{-- <a href="{{ route('frontend.room.details', $item->id) }}" class="btn btn-primary btn-block">Book Now</a> --}}
                                 <a href="{{ route('details', $item->id) }}" class="btn btn-primary btn-block">Book Now</a>
                             </div>
                         </div>

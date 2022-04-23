@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2022 at 12:01 PM
+-- Generation Time: Apr 23, 2022 at 11:52 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -39,15 +39,31 @@ CREATE TABLE `bookings` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `bookings`
+-- Table structure for table `contacts`
 --
 
-INSERT INTO `bookings` (`id`, `room_id`, `customer_name`, `customer_phone`, `checkin_date`, `checkout_date`, `booking_status`, `created_at`, `updated_at`) VALUES
-(3, 11, NULL, '01729673492', '2022-04-21T14:03', '2022-04-22T14:03', 0, '2022-04-21 08:04:03', '2022-04-21 08:04:03'),
-(4, 4, 'Md. Rabbi', '01600750001', '2022-04-22T14:05', '2022-04-23T14:05', 1, '2022-04-21 08:05:40', '2022-04-21 09:20:15'),
-(5, 12, NULL, '01552487654', '2022-04-21T14:04', '2022-04-22T14:06', 0, '2022-04-21 08:06:10', '2022-04-21 08:06:10'),
-(6, 6, 'Mr. XXX', '01422487654', '2022-04-22T14:05', '2022-04-23T14:06', 1, '2022-04-21 08:06:44', '2022-04-21 09:20:39');
+CREATE TABLE `contacts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `full_name`, `email`, `phone`, `subject`, `message`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Soton chondro shill', 'soton@example.com', '0171000000', 'a Room', 'this is test message', 0, '2022-04-23 08:17:32', '2022-04-23 08:22:04'),
+(3, 'test', 'admin@example.com', '01729673492', 'other', 'eee', 1, '2022-04-23 08:21:41', '2022-04-23 08:22:13');
 
 -- --------------------------------------------------------
 
@@ -100,15 +116,17 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(17, '2014_10_12_000000_create_users_table', 1),
-(18, '2014_10_12_100000_create_password_resets_table', 1),
-(19, '2019_08_19_000000_create_failed_jobs_table', 1),
-(20, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(22, '2022_04_13_094406_create_expneses_table', 2),
-(32, '2022_04_16_081229_create_room_types_table', 3),
-(33, '2022_04_16_081740_create_rooms_table', 3),
-(34, '2022_04_18_040729_create_room_type_images_table', 4),
-(39, '2022_04_19_115028_create_bookings_table', 5);
+(40, '2014_10_12_000000_create_users_table', 1),
+(41, '2014_10_12_100000_create_password_resets_table', 1),
+(42, '2019_08_19_000000_create_failed_jobs_table', 1),
+(43, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(44, '2022_04_13_094406_create_expneses_table', 1),
+(45, '2022_04_16_081229_create_room_types_table', 1),
+(46, '2022_04_16_081740_create_rooms_table', 1),
+(47, '2022_04_18_040729_create_room_type_images_table', 1),
+(48, '2022_04_19_115028_create_bookings_table', 1),
+(51, '2022_04_23_123731_create_contacts_table', 2),
+(52, '2022_04_23_142731_create_services_table', 3);
 
 -- --------------------------------------------------------
 
@@ -160,11 +178,11 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `room_type_id`, `room_title`, `prepared_by`, `created_at`, `updated_at`) VALUES
-(11, 13, 'Room 101', 'Admin', '2022-04-21 08:01:05', '2022-04-21 08:01:05'),
-(12, 14, 'Room 102', 'Admin', '2022-04-21 08:01:22', '2022-04-21 08:01:22'),
-(13, 15, 'Room 103', 'Admin', '2022-04-21 08:02:40', '2022-04-21 08:02:40'),
-(14, 16, 'Room 104', 'Admin', '2022-04-21 08:02:51', '2022-04-21 08:02:51'),
-(15, 17, 'Room 105', 'Admin', '2022-04-21 08:03:01', '2022-04-21 08:03:01');
+(1, 1, 'Room 101', 'Manager', '2022-04-23 06:28:08', '2022-04-23 06:28:08'),
+(2, 2, 'Room 102', 'Manager', '2022-04-23 06:28:16', '2022-04-23 06:28:16'),
+(3, 3, 'Room 103', 'Manager', '2022-04-23 06:28:25', '2022-04-23 06:28:25'),
+(4, 4, 'Room 104', 'Manager', '2022-04-23 06:28:36', '2022-04-23 06:28:36'),
+(5, 5, 'Room 105', 'Manager', '2022-04-23 06:28:46', '2022-04-23 06:28:46');
 
 -- --------------------------------------------------------
 
@@ -187,11 +205,11 @@ CREATE TABLE `room_types` (
 --
 
 INSERT INTO `room_types` (`id`, `room_type_title`, `room_type_details`, `room_type_price`, `prepared_by`, `created_at`, `updated_at`) VALUES
-(13, 'Double bedroom', 'A modern hotel room in Star Hotel\r\nNunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. malesuada metus.Incl. breakfast\r\n Private balcony\r\n Sea view\r\n Free Wi-Fi\r\n Incl. breakfast\r\n Bathroom', '1000', 'Admin', '2022-04-21 07:56:37', '2022-04-21 07:56:37'),
-(14, 'King Size Bedroom', 'A modern hotel room in Star Hotel\r\nNunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. malesuada metus.\r\n\r\n Incl. breakfast\r\n Private balcony\r\n Sea view\r\n Free Wi-Fi\r\n Incl. breakfast\r\n Bathroom', '3000', 'Admin', '2022-04-21 07:57:44', '2022-04-21 07:57:44'),
-(15, 'Single room', 'A modern hotel room in Star Hotel\r\nNunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. malesuada metus.\r\n\r\n Incl. breakfast\r\n Private balcony\r\n Sea view\r\n Free Wi-Fi\r\n Incl. breakfast\r\n Bathroom', '1500', 'Admin', '2022-04-21 07:58:22', '2022-04-21 07:58:22'),
-(16, 'Honeymoon Suite', 'A modern hotel room in Star Hotel\r\nNunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. malesuada metus.\r\n\r\n Incl. breakfast\r\n Private balcony\r\n Sea view\r\n Free Wi-Fi\r\n Incl. breakfast\r\n Bathroom', '5000', 'Admin', '2022-04-21 07:58:59', '2022-04-21 07:58:59'),
-(17, 'Family Room', 'A modern hotel room in Star Hotel\r\nNunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. malesuada metus.\r\n\r\n Incl. breakfast\r\n Private balcony\r\n Sea view\r\n Free Wi-Fi\r\n Incl. breakfast\r\n Bathroom', '4000', 'Admin', '2022-04-21 08:00:26', '2022-04-21 08:00:26');
+(1, 'Double bedroom', 'A modern hotel room in Star Hotel\r\nNunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. malesuada metus.\r\n\r\n Incl. breakfast\r\n Private balcony\r\n Sea view\r\n Free Wi-Fi\r\n Incl. breakfast\r\n Bathroom', '4500', 'Admin', '2022-04-23 06:23:06', '2022-04-23 09:49:42'),
+(2, 'King Size Bedroom', 'A modern hotel room in Star Hotel\r\nNunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. malesuada metus.\r\n\r\n Incl. breakfast\r\n Private balcony\r\n Sea view\r\n Free Wi-Fi\r\n Incl. breakfast\r\n Bathroom', '2000', 'Admin', '2022-04-23 06:25:19', '2022-04-23 09:49:30'),
+(3, 'Single room', 'A modern hotel room in Star Hotel\r\nNunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. malesuada metus.\r\n\r\n Incl. breakfast\r\n Private balcony\r\n Sea view\r\n Free Wi-Fi\r\n Incl. breakfast\r\n Bathroom', '1500', 'Admin', '2022-04-23 06:25:56', '2022-04-23 09:49:11'),
+(4, 'Family Room', 'A modern hotel room in Star Hotel\r\nNunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. malesuada metus.\r\n\r\n Incl. breakfast\r\n Private balcony\r\n Sea view\r\n Free Wi-Fi\r\n Incl. breakfast\r\n Bathroom', '5000', 'Admin', '2022-04-23 06:26:39', '2022-04-23 09:48:54'),
+(5, 'Honeymoon Suite', 'A modern hotel room in Star Hotel\r\nNunc tempor erat in magna pulvinar fermentum. Pellentesque scelerisque at leo nec vestibulum. malesuada metus.\r\n\r\n Incl. breakfast\r\n Private balcony\r\n Sea view\r\n Free Wi-Fi\r\n Incl. breakfast\r\n Bathroom', '4200', 'Admin', '2022-04-23 06:27:45', '2022-04-23 09:46:36');
 
 -- --------------------------------------------------------
 
@@ -213,11 +231,37 @@ CREATE TABLE `room_type_images` (
 --
 
 INSERT INTO `room_type_images` (`id`, `room_type_id`, `img_src`, `img_alt`, `created_at`, `updated_at`) VALUES
-(25, 13, 'upload/images/roomTypeImage/1730703836051960.jpg', 'Double bedroom', '2022-04-21 07:56:38', '2022-04-21 07:56:38'),
-(26, 14, 'upload/images/roomTypeImage/1730703906297413.jpeg', 'King Size Bedroom', '2022-04-21 07:57:44', '2022-04-21 07:57:44'),
-(27, 15, 'upload/images/roomTypeImage/1730703945648221.jpg', 'Single room', '2022-04-21 07:58:23', '2022-04-21 07:58:23'),
-(28, 16, 'upload/images/roomTypeImage/1730703984178379.jpg', 'Honeymoon Suite', '2022-04-21 07:59:00', '2022-04-21 07:59:00'),
-(29, 17, 'upload/images/roomTypeImage/1730704075626792.jpg', 'Family Room', '2022-04-21 08:00:26', '2022-04-21 08:00:26');
+(7, 5, 'upload/images/roomTypeImage/1730892063463911.jpeg', 'Honeymoon Suite', '2022-04-23 09:48:25', '2022-04-23 09:48:25'),
+(8, 4, 'upload/images/roomTypeImage/1730892094445409.jpg', 'Family Room', '2022-04-23 09:48:56', '2022-04-23 09:48:56'),
+(9, 3, 'upload/images/roomTypeImage/1730892111948696.jpg', 'Single room', '2022-04-23 09:49:13', '2022-04-23 09:49:13'),
+(10, 2, 'upload/images/roomTypeImage/1730892131802332.jpg', 'King Size Bedroom', '2022-04-23 09:49:30', '2022-04-23 09:49:30'),
+(11, 1, 'upload/images/roomTypeImage/1730892144061789.jpg', 'Double bedroom', '2022-04-23 09:49:42', '2022-04-23 09:49:42'),
+(12, 1, 'upload/images/roomTypeImage/1730892181901267.jpg', 'Double bedroom', '2022-04-23 09:50:20', '2022-04-23 09:50:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services`
+--
+
+CREATE TABLE `services` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `service_icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `service_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `service_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`id`, `service_icon`, `service_title`, `service_desc`, `created_at`, `updated_at`) VALUES
+(1, 'fa fa-glass fa-lg', 'Beverages included', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum.', '2022-04-23 08:53:11', '2022-04-23 09:04:32'),
+(2, 'fa fa-credit-card fa-lg', 'Stay First, Pay After!', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum.', '2022-04-23 09:08:53', '2022-04-23 09:08:53'),
+(3, 'fa fa-cutlery fa-lg', '24 Hour Restaurant', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum.', '2022-04-23 09:09:35', '2022-04-23 09:09:35'),
+(4, 'fa fa-tint fa-lg', 'Spa Included!', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum.', '2022-04-23 09:10:11', '2022-04-23 09:10:11');
 
 -- --------------------------------------------------------
 
@@ -246,8 +290,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `address`, `nid`, `image`, `role`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Manager', 'manager@example.com', '$2y$10$WS7ARZDJpMbVTi6OFm7/w.sJPv4/5ZLewNcOq5fwB3PhyFcJCvq8O', '0176651263', 'uttara, NO: 6 Sector', '1512165465', 'avatar.png', '2', NULL, 'dTCxoXKPLVjySbbbaMiLKHHYyPLTy3UyIdtdogMhB7ytoCvBttAxb4awKAbc', '2022-04-13 03:07:24', '2022-04-13 03:07:24'),
-(2, 'Admin', 'admin@example.com', '$2y$10$V8jFDzgweZsoaOMUrqs2leC3KJ4NJ3/DLiZbCXttFk.fVYjRnFFoe', '0171000000', 'uttara', '5254443', 'avatar.png', '1', NULL, NULL, '2022-04-14 03:44:40', '2022-04-14 03:44:40');
+(1, 'Admin', 'admin@example.com', '$2y$10$Pm79BB/QkqK8tqb42A4yq.lRvk32jtnKkSj.MY3YNUTu.U5FfLMQC', '01729673492', 'uttara', '1548759658', 'avatar.png', '1', NULL, NULL, '2022-04-23 06:19:25', '2022-04-23 06:19:25'),
+(2, 'Manager', 'manager@example.com', '$2y$10$/hmrsI/vHf53D8Isi5EhHuV4EHYq9Y28Jd0F7xqER9Rs6A88gLI2W', '01939673492', 'Dhaka', '1348759658', 'avatar.png', '2', NULL, NULL, '2022-04-23 06:20:53', '2022-04-23 06:20:53');
 
 --
 -- Indexes for dumped tables
@@ -257,6 +301,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `address`, `nid
 -- Indexes for table `bookings`
 --
 ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -311,6 +361,12 @@ ALTER TABLE `room_type_images`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `services`
+--
+ALTER TABLE `services`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -325,13 +381,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `expneses`
 --
 ALTER TABLE `expneses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -343,7 +405,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -355,19 +417,25 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `room_types`
 --
 ALTER TABLE `room_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `room_type_images`
 --
 ALTER TABLE `room_type_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `services`
+--
+ALTER TABLE `services`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`

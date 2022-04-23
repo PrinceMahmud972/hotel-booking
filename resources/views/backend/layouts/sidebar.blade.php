@@ -69,14 +69,26 @@
         </div>
     </li>
 
+    <hr class="sidebar-divider" />
 
+    
     <li class="nav-item">
-        <a class="nav-link" href="forms.html">
+        <a class="nav-link" href="{{ route('contact') }}">
             <i class="fab fa-fw fa-wpforms"></i>
-            <span>test</span>
+            <span>Contact</span>
         </a>
     </li>
-    <li class="nav-item">
+    
+    @if (Auth::user()->role == '1')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('backend.service') }}">
+                <i class="fab fa-fw fa-wpforms"></i>
+                <span>Service</span>
+            </a>
+        </li>
+    @endif
+
+    {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true" aria-controls="collapseTable">
             <i class="fas fa-fw fa-table"></i>
             <span>Tables</span>
@@ -121,5 +133,5 @@
         </a>
     </li>
     <hr class="sidebar-divider" />
-    <div class="version" id="version-ruangadmin"></div>
+    <div class="version" id="version-ruangadmin"></div> --}}
 </ul>

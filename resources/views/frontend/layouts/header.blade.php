@@ -14,7 +14,7 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown active"><a href="{{ url('/') }}">Home</a></li>
                     <li class="dropdown"><a href="{{ route('frontend.room') }}">Rooms</a></li>
-                    <li class="dropdown"><a href="{{ route('frontend.blog') }}">Blog</a></li>
+                    {{-- <li class="dropdown"><a href="{{ route('frontend.blog') }}">Blog</a></li> --}}
 
                     <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
                     <li><a href="{{ route('frontend.contact') }}">Contact</a></li>

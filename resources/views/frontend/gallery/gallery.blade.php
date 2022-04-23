@@ -26,7 +26,7 @@
         </div>
     </section>
 
-    <!-- Filter -->
+    {{-- <!-- Filter -->
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -39,17 +39,21 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Gallery -->
     <section id="gallery" class="mt50">
         <div class="container">
             <div class="row gallery">
                 <!-- Image 1 -->
+                @foreach ($gallery_data as $gallery)
                 <div class="col-sm-3 restaurant fadeIn appear" data-start="200">
-                    <a href="{{ asset('frontend/assets/images/gallery/1.jpg') }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset('frontend/assets/images/gallery/1.jpg') }}" alt="image" class="img-responsive zoom-img" /><i class="fa fa-search"></i></a>
+
+                    <a href="{{ asset($gallery->img_src) }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset($gallery->img_src) }}" alt="image" class="img-responsive zoom-img" /><i class="fa fa-search"></i></a>
                 </div>
-                <!-- Image 2 -->
+                @endforeach
+                
+                {{-- <!-- Image 2 -->
                 <div class="col-sm-3 pool fadeIn appear" data-start="200">
                     <a href="{{ asset('frontend/assets/images/gallery/2.jpg') }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset('frontend/assets/images/gallery/2.jpg') }}" alt="image" class="img-responsive zoom-img" /><i class="fa fa-search"></i></a>
                 </div>
@@ -64,35 +68,7 @@
                 <!-- Image 5 -->
                 <div class="col-sm-3 business fadeIn appear" data-start="200">
                     <a href="{{ asset('frontend/asstes/images/gallery/5.jpg') }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset('frontend/assets/images/gallery/5.jpg') }}" alt="image" class="img-responsive zoom-img" /><i class="fa fa-search"></i></a>
-                </div>
-                <!-- Image 6 -->
-                <div class="col-sm-3 pool fadeIn appear" data-start="200">
-                    <a href="{{ asset('frontend/assets/images/gallery/6.jpg') }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset('frontend/assets/images/gallery/6.jpg') }}" alt="image" class="img-responsive zoom-img" /><i class="fa fa-search"></i></a>
-                </div>
-                <!-- Image 7 -->
-                <div class="col-sm-3 business fadeIn appear" data-start="200">
-                    <a href="{{ asset('frontend/assets/images/gallery/7.jpg') }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset('frontend/assets/images/gallery/7.jpg') }}" alt="image" class="img-responsive zoom-img" /><i class="fa fa-search"></i></a>
-                </div>
-                <!-- Image 8 -->
-                <div class="col-sm-3 pool fadeIn appear" data-start="200">
-                    <a href="{{ asset('frontend/assets/images/gallery/8.jpg') }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset('frontend/assets/images/gallery/8.jpg') }}" alt="image" class="img-responsive zoom-img" /><i class="fa fa-search"></i></a>
-                </div>
-                <!-- Image 1 -->
-                <div class="col-sm-3 restaurant fadeIn appear" data-start="200">
-                    <a href="{{ asset('frontend/assets/images/gallery/9.jpg') }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset('frontend/assets/images/gallery/9.jpg') }}" alt="image" class="img-responsive zoom-img" /><i class="fa fa-search"></i></a>
-                </div>
-                <!-- Image 2 -->
-                <div class="col-sm-3 pool fadeIn appear" data-start="200">
-                    <a href="{{ asset('frontend/assets/images/gallery/10.jpg') }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset('frontend/assets/images/gallery/10.jpg') }}" alt="image" class="img-responsive zoom-img" /><i class="fa fa-search"></i></a>
-                </div>
-                <!-- Image 3 -->
-                <div class="col-sm-3 rooms fadeIn appear" data-start="200">
-                    <a href="{{ asset('frontend/assets/images/gallery/11.jpg') }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset('frontend/assets/images/gallery/11.jpg') }}" alt="image" class="img-responsive zoom-img" /><i class="fa fa-search"></i></a>
-                </div>
-                <!-- Image 4 -->
-                <div class="col-sm-3 pool fadeIn appear" data-start="200">
-                    <a href="{{ asset('frontend/assets/images/gallery/12.jpg') }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset('frontend/assets/images/gallery/12.jpg') }}" alt="image" class="img-responsive zoom-img" /><i class="fa fa-search"></i></a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

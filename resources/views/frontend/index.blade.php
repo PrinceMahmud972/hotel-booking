@@ -140,7 +140,10 @@
                 @foreach ($room_data as $room)
                 <div class="col-sm-4">
                     <div class="room-thumb">
-                        <img src="{{ asset('frontend/assets/images/rooms/room-01.jpg') }}" alt="room 1" class="img-responsive" />
+                        {{-- <img src="{{ asset('frontend/assets/images/rooms/room-01.jpg') }}" alt="room 1" class="img-responsive" /> --}}
+                        @foreach ($room->roomTypeImages as $img)
+                            <img src="{{ asset($img->img_src) }}" alt="room 1" style="object-fit: cover" class="img-responsive" />
+                        @endforeach
                         <div class="mask">
                             <div class="main">
                                 <h5>{{ $room->roomType->room_type_title }}</h5>
@@ -182,38 +185,15 @@
                 <div class="col-sm-12">
                     <h2 class="lined-heading"><span>USP section</span></h2>
                 </div>
+                @foreach ($services as $item)
                 <div class="col-sm-3 bounceIn appear" data-start="0">
                     <div class="box-icon">
-                        <div class="circle"><i class="fa fa-glass fa-lg"></i></div>
-                        <h3>Beverages included</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum.</p>
-                        <a href="#">Read more<i class="fa fa-angle-right"></i></a>
+                        <div class="circle"><i class="{{ $item->service_icon }} fa-lg"></i></div>
+                        <h3>{{ $item->service_title }}</h3>
+                        <p>{{ $item->service_desc }}</p>
                     </div>
                 </div>
-                <div class="col-sm-3 bounceIn appear" data-start="400">
-                    <div class="box-icon">
-                        <div class="circle"><i class="fa fa-credit-card fa-lg"></i></div>
-                        <h3>Stay First, Pay After!</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum.</p>
-                        <a href="#">Read more<i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-sm-3 bounceIn appear" data-start="800">
-                    <div class="box-icon">
-                        <div class="circle"><i class="fa fa-cutlery fa-lg"></i></div>
-                        <h3>24 Hour Restaurant</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum.</p>
-                        <a href="#">Read more<i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-sm-3 bounceIn appear" data-start="1200">
-                    <div class="box-icon">
-                        <div class="circle"><i class="fa fa-tint fa-lg"></i></div>
-                        <h3>Spa Included!</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue, quis rhoncus purus fermentum.</p>
-                        <a href="#">Read more<i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -228,10 +208,13 @@
             </div>
         </div>
         <div id="owl-gallery" class="owl-carousel">
+            @foreach ($gallery_data as $gallery)
             <div class="item">
-                <a href="{{ asset('frontend/assets/images/gallery/1.jpg') }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset('frontend/assets/images/gallery/1.jpg') }}" alt="Image 1" /><i class="fa fa-search"></i></a>
+                <a href="{{ asset($gallery->img_src) }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset($gallery->img_src) }}" alt="Image 1" /><i class="fa fa-search"></i></a>
             </div>
-            <div class="item">
+            @endforeach
+
+            {{-- <div class="item">
                 <a href="{{ asset('frontend/assets/images/gallery/2.jpg') }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset('frontend/assets/images/gallery/2.jpg') }}" alt="Image 2" /><i class="fa fa-search"></i></a>
             </div>
             <div class="item">
@@ -239,7 +222,7 @@
             </div>
             <div class="item">
                 <a href="{{ asset('frontend/assets/images/gallery/4.jpg') }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset('frontend/assets/images/gallery/4.jpg') }}" alt="Image 4" /><i class="fa fa-search"></i></a>
-            </div>
+            </div> --}}
         </div>
     </section>
 
@@ -336,7 +319,7 @@
                     // console.log(res);
                     let htmldata = '';
                     $.each(res.data, function(index, row){
-                        htmldata += '<option value="'+row.id+'">'+row.roomType.room_type_tilte+'</option>';
+                        htmldata += '<option value="'+row.room.id+'">'+row.room.room_title +'-'+row.roomtype.room_type_title+'</option>';
                     });
                     $('.room-list-id').html(htmldata);
                 }

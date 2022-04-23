@@ -79,7 +79,7 @@
                         // console.log(res);
                         let htmldata = '';
                         $.each(res.data, function(index, row){
-                            htmldata += '<option value="'+row.id+'">'+row.room_title+'</option>';
+                            htmldata += '<option value="'+row.room.id+'">'+row.room.room_title +'-'+row.roomtype.room_type_title+'</option>';
                         });
                         $('.room-list').html(htmldata);
                     }

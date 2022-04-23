@@ -1,9 +1,9 @@
 @extends('frontend.frontend_master')
 @section('frontend-content')
-            <!-- GMap -->
+            {{-- <!-- GMap -->
             <div id="map">
                 <p>This will be replaced with the Google Map.</p>
-            </div>
+            </div> --}}
             <div class="container">
                 <div class="row">
                     <!-- Contact form -->
@@ -11,41 +11,61 @@
                         <div class="col-md-8">
                             <h2 class="lined-heading"><span>Send a message</span></h2>
                             <p>
-                                Pellentesque facilisis justo sed enim facilisis luctus. Duis pretium nibh at lectus tempus, vel lacinia quam adipiscing. Nullam luctus congue mattis. Ut volutpat iaculis neque, sit amet fermentum nunc venenatis
-                                sed. In mauris sem, pulvinar sed arcu sit amet, fringilla condimentum nulla. Aenean at purus mi. Suspendisse potenti.
+                                Send Your Message to Admin
                             </p>
-                            <form class="clearfix mt50" role="form" method="post" action="php/contact.php" name="contactform" id="contactform">
-                                <!-- Error message -->
-                                <div id="message"></div>
+                            <!------ Form Error Message Show-------->
+                            @if($errors->any())
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{{ $errors->first() }}</strong>
+                                <button class="close" data-dismiss="alert" aria-label="close">&times;</button>
+                                </div>
+                            @endif
+                            
+                            @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>{{ session('success') }}</strong>
+                                <button class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+                            </div>
+                            @endif
+
+                            <form class="clearfix mt50" method="post" action="{{ route('contact.store') }}" >
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="name" accesskey="U"><span class="required">*</span> Your Name</label>
-                                            <input name="name" type="text" id="name" class="form-control" value="" />
+                                            <input name="full_name" type="text" id="name" class="form-control" value="" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="email" accesskey="E"><span class="required">*</span> E-mail</label>
-                                            <input name="email" type="text" id="email" value="" class="form-control" />
+                                            <input name="email" type="email" id="email" value="" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="phone" accesskey="E"><span class="required">*</span> Phone</label>
+                                            <input name="phone" type="phone" id="phone" value="" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="subject" accesskey="S">Subject</label>
+                                            <select name="subject" id="subject" class="form-control">
+                                                <option value="booking">Booking</option>
+                                                <option value="a Room">Room</option>
+                                                <option value="other">Other</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="subject" accesskey="S">Subject</label>
-                                    <select name="subject" id="subject" class="form-control">
-                                        <option value="Booking">Booking</option>
-                                        <option value="a Room">Room</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="comments" accesskey="C"><span class="required">*</span> Your message</label>
-                                    <textarea name="comments" rows="9" id="comments" class="form-control"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label><span class="required">*</span> Spam Filter: &nbsp;&nbsp;&nbsp;1 + 1 =</label>
-                                    <input name="verify" type="text" id="verify" value="" class="form-control" placeholder="Please enter the outcome" />
+                                    <textarea name="message" rows="9" id="comments" class="form-control"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-lg btn-primary">Send message</button>
                             </form>

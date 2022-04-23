@@ -1,13 +1,15 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Backend\RoomController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Backend\BookingController;
 use App\Http\Controllers\Backend\ExpenseController;
-use App\Http\Controllers\Backend\RoomController;
+use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\RoomTypeController;
+use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\FrontendController;
 
 /*
@@ -36,10 +38,14 @@ Route::get('/dashboard', function () {
     Route::get('/details/{id}', [FrontendController::class, 'detailsPageShow'])->name('details');
 
 
+    //frontend-blog-route
+    // Route::get('/blog', [FrontendController::class, 'showBlogPage'])->name('frontend.blog');
+    // Route::get('/blog-details', [FrontendController::class, 'showBlogDetailsPage'])->name('frontend.blog.details');
 
-    Route::get('/blog', [FrontendController::class, 'showBlogPage'])->name('frontend.blog');
-    Route::get('/blog-details', [FrontendController::class, 'showBlogDetailsPage'])->name('frontend.blog.details');
+    //frontend-gallery-route
     Route::get('/gallery', [FrontendController::class, 'showGalleryPage'])->name('frontend.gallery');
+
+    //frontend-contact-route
     Route::get('/contact', [FrontendController::class, 'showContactPage'])->name('frontend.contact');
 
 
@@ -68,7 +74,7 @@ Route::get('/dashboard', function () {
     Route::get('/room-delete/{id}',[RoomController::class, 'deleteData'])->name('room.delete');
     
     //delete gallery images
-    Route::get('/room-type-image/{id}',[RoomTypeController::class, 'deleteRoomTypeImage'])->name('room.delete');
+    Route::get('/room-type-image/{id}',[RoomTypeController::class, 'deleteRoomTypeImage']);
     // Route::get('/room-delete/{id}',[RoomController::class, 'deleteData'])->name('room.delete');
 
     //booking route
@@ -81,6 +87,22 @@ Route::get('/dashboard', function () {
 
     //check available rooms
     Route::get('/booking/available-rooms/{checkindate}', [BookingController::class, 'checkAvailableRoom']);
+    
+    //contact form
+    Route::get('/contact-backend', [ContactController::class, 'index'])->name('contact');
+    Route::post('/contact-store', [ContactController::class, 'store'])->name('contact.store');
+    Route::get('/contact-view/{id}', [ContactController::class, 'viewContactData'])->name('contact.view');
+    Route::get('/contact-edit/{id}', [ContactController::class, 'editContactData'])->name('contact.edit');
+    Route::post('/contact-update/{id}', [ContactController::class, 'updateContactData'])->name('contact.update');
+    Route::get('/contact-delete/{id}', [ContactController::class, 'deleteContactData'])->name('contact.delete');
+
+    // services route
+    Route::get('/backend/service', [ServiceController::class, 'index'])->name('backend.service');
+    Route::get('/backend/service-create', [ServiceController::class, 'create'])->name('backend.service.create');
+    Route::post('/backend/service-store', [ServiceController::class, 'store'])->name('backend.service.store');
+    Route::get('/backend/service-edit/{id}', [ServiceController::class, 'edit'])->name('backend.service.edit');
+    Route::post('/backend/service-update/{id}', [ServiceController::class, 'update'])->name('backend.service.update');
+    Route::get('/backend/service-delete/{id}', [ServiceController::class, 'delete'])->name('backend.service.delete');
 
 // authentication route
     Auth::routes();

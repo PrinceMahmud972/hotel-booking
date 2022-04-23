@@ -6,6 +6,7 @@ use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\RoomType;
 use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
@@ -91,7 +92,14 @@ class BookingController extends Controller
     public function checkAvailableRoom(Request $request, $checkindate)
     {
         $available_rooms = DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM bookings WHERE '$checkindate' BETWEEN checkin_date AND checkout_date )");
-        return response()->json(['data' => $available_rooms]);
+
+        $data = [];
+        foreach($available_rooms as $room){
+            $roomType = RoomType::find($room->room_type_id);
+            $data[] = ['room' => $room, 'roomtype' =>$roomType];
+        }
+
+        return response()->json(['data' => $data]);
     }
     /**
      *  delete booking data

@@ -30,7 +30,7 @@
                         <tr>
                             <th scope="row">{{ $loop->index+1; }}</th>
                             {{-- <td>{{ $data->room_id }}</td> --}}
-                            <td>{{ $data-> }}</td>
+                            <td>{{ $data->room->room_title }}</td>
                             <td>{{ ($data->customer_name == NULL) ? 'Not Given' : $data->customer_name }}</td>
                             <td>{{ $data->customer_phone }}</td>
                             <td>{{ $data->checkin_date }}</td>

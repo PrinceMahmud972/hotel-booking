@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <label for="roomAvailable">Room Available<span class="text-danger">*</span></label>
                         <select class="form-select form-control room-list" name="room_id" id="roomAvailable">
-                           <option value="{{ $edit_data->id }}">{{ $edit_data->room_id }}</option>
+                           <option value="{{ $edit_data->id }}">{{ $edit_data->room->room_title }}</option>
                            {{-- <option value="{{ $edit_data->id }}">{{ $edit_data->room->room_title }}</option> --}}
                         </select>
                     </div>
@@ -80,7 +80,7 @@
                         // console.log(res);
                         let htmldata = '';
                         $.each(res.data, function(index, row){
-                            htmldata += '<option value="'+row.id+'">'+row.room_title+'</option>';
+                            htmldata += '<option value="'+row.room.id+'">'+row.room.room_title +'-'+row.roomtype.room_type_title+'</option>';
                         });
                         $('.room-list').html(htmldata);
                     }

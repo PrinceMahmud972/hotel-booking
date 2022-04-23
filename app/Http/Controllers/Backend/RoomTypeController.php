@@ -119,7 +119,13 @@ class RoomTypeController extends Controller
      */
     public function deleteData($id)
     {
+        $data = RoomType::findOrFail($id);
+        foreach($data->roomTypeImages as $img){
+            unlink($img->img_src);
+        }
+        
         RoomType::findOrFail($id)->delete();
+
         return redirect()->back()->with('success','Data Deleted successfully');
     }
     

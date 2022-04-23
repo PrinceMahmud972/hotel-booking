@@ -5,13 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RoomTypeImage extends Model
+class Service extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
-    // public function roomType()
-    // {
-    //     return $this->belongsTo(RoomType::class, 'room_type_id');
-    // }
 }
