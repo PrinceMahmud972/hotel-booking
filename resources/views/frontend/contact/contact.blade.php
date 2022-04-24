@@ -76,34 +76,34 @@
                     <section class="contact-details mt50">
                         <div class="col-md-4">
                             <h2 class="lined-heading"><span>Address</span></h2>
-                            <a href="{{ asset('frontend/assets/images/contact/contact-lg-01.jpg') }}" data-rel="prettyPhoto"><img src="{{ asset('frontend/assets/images/contact/contact-01.jpg') }}" alt="Our pool" class="img-thumbnail img-responsive" /></a>
+                            <a href="{{ asset('2.jpg') }}" data-rel="prettyPhoto"><img src="{{ asset('2.jpg') }}" alt="Our pool" class="img-thumbnail img-responsive" /></a>
                             <address class="mt50">
-                                <strong>Starhotel</strong><br />
-                                795 Las Palmas<br />
-                                Spain, CA 94107<br />
-                                <abbr title="Phone">P:</abbr> <a href="#">(123) 456-7890</a><br />
-                                <abbr title="Email">E:</abbr> <a href="#">mail@example.com</a><br />
+                                <strong>Amirat Hotel</strong><br />
+                                Darshana, Chuadanga<br />
+                                Bangladesh<br />
+                                <abbr title="Phone">P:</abbr> <a href="#">+8801739-772375</a><br />
+                                <abbr title="Email">E:</abbr> <a href="#">kowel.centralknit@gmail.com</a><br />
                                 <abbr title="Website">W:</abbr> <a href="#">www.slashdown.nl</a><br />
                             </address>
                             <h2 class="lined-heading mt50"><span>Social</span></h2>
                             <div class="row">
                                 <div class="col-xs-4">
                                     <div class="box-icon">
-                                        <a href="#">
+                                        <a href="https://www.facebook.com/AmiratHotel">
                                             <div class="circle"><i class="fa fa-facebook fa-lg"></i></div>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-xs-4">
                                     <div class="box-icon">
-                                        <a href="#">
+                                        <a href="https://www.facebook.com/AmiratHotel">
                                             <div class="circle"><i class="fa fa-twitter fa-lg"></i></div>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-xs-4">
                                     <div class="box-icon">
-                                        <a href="#">
+                                        <a href="https://www.facebook.com/AmiratHotel">
                                             <div class="circle"><i class="fa fa-linkedin fa-lg"></i></div>
                                         </a>
                                     </div>

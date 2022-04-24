@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Room;
 use App\Models\RoomTypeImage;
 use App\Models\Service;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -18,12 +19,13 @@ class FrontendController extends Controller
         $room_data = Room::orderBy('id', 'desc')->take(3)->get();
         $services = Service::orderBy('id', 'desc')->take(4)->get();
         $gallery_data = RoomTypeImage::latest()->get();
-        return view('frontend.index', compact('room_data', 'services','gallery_data'));
+        $slider = Slider::orderBy('id', 'desc')->take(3)->get();
+        return view('frontend.index', compact('room_data', 'services','gallery_data','slider'));
     }
     // show Room page in frontend
     public function showRoomPage()
     {
-        $room_data = Room::all();
+        $room_data = Room::latest()->get();
        return view('frontend.room.rooms', compact('room_data'));
     }
     

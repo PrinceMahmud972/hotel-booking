@@ -115,7 +115,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests</div>
+                        <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Booking Requests</div>
                         @php
                         $pending_data = App\Models\Booking::where('booking_status','=','0')->count();
                         // $booking_data = App\Models\Booking::count();
@@ -135,7 +135,7 @@
     </div>
 
     <!-- Area Chart -->
-    <div class="col-xl-8 col-lg-7">
+    {{-- <div class="col-xl-8 col-lg-7">
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>
@@ -325,6 +325,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection

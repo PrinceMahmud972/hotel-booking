@@ -190,7 +190,8 @@
                     <div class="box-icon">
                         <div class="circle"><i class="{{ $item->service_icon }} fa-lg"></i></div>
                         <h3>{{ $item->service_title }}</h3>
-                        <p>{{ $item->service_desc }}</p>
+                        {{-- <p>{{ $item->service_desc }}</p> --}}
+                        <p>{!! Str::words($item->service_desc, 20, '') !!}</p>
                     </div>
                 </div>
                 @endforeach

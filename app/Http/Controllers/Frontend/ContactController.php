@@ -19,7 +19,7 @@ class ContactController extends Controller
     /**
      *  contact store
      */
-    public function store(Request $request)
+    public function storeData(Request $request)
     {
         $request->validate([
             'full_name' => 'required',
@@ -37,7 +37,7 @@ class ContactController extends Controller
         $contact->subject = $request->subject;
         $contact->message = $request->message;
         $contact->save();
-        return redirect()->back()->with('success','Message Sent Successfully');
+        return redirect()->route('frontend.contact')->with('success','Message Sent Successfully');
     }
     /**
      *  view contact data

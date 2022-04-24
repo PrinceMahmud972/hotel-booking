@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2022 at 11:52 AM
+-- Generation Time: Apr 24, 2022 at 08:23 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -126,7 +126,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (47, '2022_04_18_040729_create_room_type_images_table', 1),
 (48, '2022_04_19_115028_create_bookings_table', 1),
 (51, '2022_04_23_123731_create_contacts_table', 2),
-(52, '2022_04_23_142731_create_services_table', 3);
+(52, '2022_04_23_142731_create_services_table', 3),
+(53, '2022_04_24_091445_create_sliders_table', 4);
 
 -- --------------------------------------------------------
 
@@ -266,6 +267,29 @@ INSERT INTO `services` (`id`, `service_icon`, `service_title`, `service_desc`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sliders`
+--
+
+CREATE TABLE `sliders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `slider_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slider_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slider_short_desc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sliders`
+--
+
+INSERT INTO `sliders` (`id`, `slider_image`, `slider_title`, `slider_short_desc`, `created_at`, `updated_at`) VALUES
+(2, 'upload/images/slider/1730962713100679.jpg', 'Double Room', '2000 BDT - a night this summer', '2022-04-24 04:07:44', '2022-04-24 05:00:20'),
+(4, 'upload/images/slider/1730964519414371.jpg', 'Family Room', '3000 BDT - a night this summer', '2022-04-24 05:00:05', '2022-04-24 05:00:05');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -367,6 +391,12 @@ ALTER TABLE `services`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sliders`
+--
+ALTER TABLE `sliders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -405,7 +435,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -436,6 +466,12 @@ ALTER TABLE `room_type_images`
 --
 ALTER TABLE `services`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `sliders`
+--
+ALTER TABLE `sliders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`

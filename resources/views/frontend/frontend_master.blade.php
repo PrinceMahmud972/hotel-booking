@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <title>AmiratHotel</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <link rel="shortcut icon" href="favicon.ico" />
+        <link rel="shortcut icon" href="{{ asset('1.png') }}" />
 
        <!-- css -->
        @include('frontend.layouts.partials.css') 
