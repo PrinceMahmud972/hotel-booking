@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class ContactController extends Controller
 {
@@ -37,6 +38,8 @@ class ContactController extends Controller
         $contact->subject = $request->subject;
         $contact->message = $request->message;
         $contact->save();
+
+        Session::put('success', 'Message Sent Successfully');
         return redirect()->route('frontend.contact')->with('success','Message Sent Successfully');
     }
     /**
@@ -48,7 +51,7 @@ class ContactController extends Controller
        return view('backend.contact.view', compact('single_view_data'));
     }
     /**
-     *  edit data 
+     *  edit data
      */
     public function editContactData($id)
     {

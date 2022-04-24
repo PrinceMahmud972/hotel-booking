@@ -14,35 +14,38 @@
                 <button class="close" data-dismiss="alert" aria-label="Close">&times;</button>
             </div>
             @endif
-            
-            <table class="table table-hover table-responsive">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Service Icon</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Service Desc</th>
-                        <th scope="col" style="width: 15%">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($all_data as $data)
+
+            <div class="table-responsive">
+                <table class="table table-hover px-3 py-2" id="myTable">
+                    <thead>
                         <tr>
-                            <th>{{ $loop->index+1 }}</th>
-                            <th>{{ $data->service_icon }}</th>
-                            <th>{{ $data->service_title }}</th>
-                            <th>{{ $data->service_desc }}</th>
-                            <th>
-                               @if (Auth::user()->role == '1')
-                                    <a href="{{ route('backend.service.edit',$data->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    <a onclick="return confirm('Are You Sure?')" href="{{ route('backend.service.delete', $data->id) }}" class="btn btn-danger btn-sm">Delete</a>
-                               @endif
-                            </th>
+                            <th scope="col">#</th>
+                            <th scope="col">Service Icon</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Service Desc</th>
+                            <th scope="col" style="width: 15%">Action</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            
+                    </thead>
+                    <tbody>
+                        @foreach ($all_data as $data)
+                            <tr>
+                                <th>{{ $loop->index+1 }}</th>
+                                <th>{{ $data->service_icon }}</th>
+                                <th>{{ $data->service_title }}</th>
+                                <th>{{ $data->service_desc }}</th>
+                                <th>
+                                   @if (Auth::user()->role == '1')
+                                        <a href="{{ route('backend.service.edit',$data->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        <a onclick="return confirm('Are You Sure?')" href="{{ route('backend.service.delete', $data->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                   @endif
+                                </th>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+
         </div>
     </div>
 </div>

@@ -4,7 +4,7 @@
     @include('frontend.layouts.slider')
 
     <!-- Reservation form -->
-    
+
     <!--------- Success Message Show--------->
     @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -25,17 +25,17 @@
                                     <input name="customer_phone" type="text" id="customerPhone" value="" class="form-control" placeholder="Please enter your Phone Number" />
                                 </div>
                             </div>
-                            
+
                             <div class="col-sm-2">
                                 <div class="form-group">
                                     <label for="checkin">Room Check-in<strong class="text-danger">*</strong></label>
-                                    <input name="checkin_date" type="datetime-local" id="checkin" class="form-control checkindate" placeholder="Check-in" />
+                                    <input name="checkin_date" type="datetime-local" class="form-control checkindate" placeholder="Check-in" />
                                 </div>
                             </div>
                             <div class="col-sm-2">
                                 <div class="form-group">
                                     <label for="checkout">Room Check-out<strong class="text-danger">*</strong></label>
-                                    <input name="checkout_date" type="datetime-local" id="checkout" class="form-control" placeholder="Check-out" />
+                                    <input name="checkout_date" type="datetime-local"  class="form-control" placeholder="Check-out" />
                                 </div>
                             </div>
 
@@ -43,11 +43,11 @@
                                 <div class="form-group">
                                     <label for="roomAvailable">Room Available<span class="text-danger">*</span></label>
                                     <select class="form-control room-list-id" name="room_id" id="roomAvailable" >
-                                        
+
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div class="col-sm-2">
                                 <button type="submit" class="btn btn-primary btn-block">Book Now</button>
                             </div>
@@ -93,7 +93,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Room Checkout Date<span class="text-danger">*</span></label>
-                                        <input type="datetime-local" name="checkout_date" class="form-control checkoutdate" />                    
+                                        <input type="datetime-local" name="checkout_date" class="form-control checkoutdate" />
                                     </div>
                                 </div>
 
@@ -111,13 +111,13 @@
 
                                 </div>
 
-                                
-                                
-                                
+
+
+
                                 <div class="form-group">
                                     <label for="roomAvailable">Room Available<span class="text-danger">*</span></label>
                                     <select class="form-select form-control room-list" name="room_id" id="roomAvailable">
-                                        
+
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Save</button>

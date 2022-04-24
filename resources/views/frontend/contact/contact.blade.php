@@ -20,12 +20,16 @@
                                 <button class="close" data-dismiss="alert" aria-label="close">&times;</button>
                                 </div>
                             @endif
-                            
-                            @if (session('success'))
+
+                            {{-- @if (session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <strong>{{ session('success') }}</strong>
                                 <button class="close" data-dismiss="alert" aria-label="Close">&times;</button>
                             </div>
+                            @endif --}}
+
+                            @if (session('success'))
+                            <p>{{ session('success') }}</p>
                             @endif
 
                             <form class="clearfix mt50" method="post" action="{{ route('contact.store') }}" >
@@ -71,7 +75,7 @@
                             </form>
                         </div>
                     </section>
-    
+
                     <!-- Contact details -->
                     <section class="contact-details mt50">
                         <div class="col-md-4">

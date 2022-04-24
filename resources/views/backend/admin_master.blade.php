@@ -11,6 +11,7 @@
         <link href="{{ asset('backend/assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('backend/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('backend/assets/css/ruang-admin.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('backend/assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     </head>
 
     <body id="page-top">
@@ -48,6 +49,16 @@
         <script src="{{ asset('backend/assets/js/ruang-admin.min.js') }}"></script>
         <script src="{{ asset('backend/assets/vendor/chart.js/Chart.min.js') }}"></script>
         <script src="{{ asset('backend/assets/js/demo/chart-area-demo.js') }}"></script>
+
+          <!-- Page level plugins -->
+    <script src="{{ asset('backend/assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+        <script>
+           $(document).ready( function () {
+                $('#myTable').DataTable();
+            } );
+        </script>
         @yield('scripts')
     </body>
 </html>

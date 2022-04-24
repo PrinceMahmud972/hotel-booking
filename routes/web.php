@@ -13,24 +13,13 @@ use App\Http\Controllers\Backend\RoomTypeController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\FrontendController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 // Route::get('/', function () {
 //     return view('frontend.index');
 // });
 
-Route::group(['middleware' => ['guest']], function () {
-    
-    // frontend route
+// frontend route
     Route::get('/', [FrontendController::class, 'index']);
     Route::get('/rooms-list', [FrontendController::class, 'showRoomPage'])->name('frontend.room');
     Route::get('/details/{id}', [FrontendController::class, 'detailsPageShow'])->name('details');
@@ -38,11 +27,17 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('/contact', [FrontendController::class, 'showContactPage'])->name('frontend.contact');
     Route::post('/contact/store', [ContactController::class, 'storeData'])->name('contact.store');
 
+    //check available rooms
+    Route::get('/booking/available-rooms/{checkindate}', [BookingController::class, 'checkAvailableRoom']);
+    Route::post('/booking-store',[BookingController::class, 'store'])->name('booking.store');
+
     //login route
     Route::get('/login', [FrontendController::class, 'showLoginPage']);
     Route::post('/login', [LoginController::class, 'login'])->name('login');
-});
 
+/******************************************************************
+ * backen route Start
+ */
 Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/dashboard', function () {
@@ -72,7 +67,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/room-edit/{id}',[RoomController::class, 'edit'])->name('room.edit');
     Route::post('/room-update/{id}',[RoomController::class, 'updateData'])->name('room.update');
     Route::get('/room-delete/{id}',[RoomController::class, 'deleteData'])->name('room.delete');
-    
+
     //delete gallery images
     Route::get('/room-type-image/{id}',[RoomTypeController::class, 'deleteRoomTypeImage']);
     // Route::get('/room-delete/{id}',[RoomController::class, 'deleteData'])->name('room.delete');
@@ -80,14 +75,12 @@ Route::group(['middleware' => 'auth'], function(){
     //booking route
     Route::get('/booking',[BookingController::class, 'index'])->name('booking');
     Route::get('/booking-create',[BookingController::class, 'create'])->name('booking.create');
-    Route::post('/booking-store',[BookingController::class, 'store'])->name('booking.store');
+
     Route::get('/booking-edit/{id}',[BookingController::class, 'editBookingData'])->name('booking.edit');
     Route::post('/booking-update/{id}',[BookingController::class, 'updateBookingData'])->name('booking.update');
     Route::get('/booking-delete/{id}',[BookingController::class, 'deleteData'])->name('booking.delete');
 
-    //check available rooms
-    Route::get('/booking/available-rooms/{checkindate}', [BookingController::class, 'checkAvailableRoom']);
-    
+
     //contact form
     Route::get('/contact-backend', [ContactController::class, 'index'])->name('contact');
     Route::get('/contact-view/{id}', [ContactController::class, 'viewContactData'])->name('contact.view');
@@ -95,7 +88,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/contact-update/{id}', [ContactController::class, 'updateContactData'])->name('contact.update');
     Route::get('/contact-delete/{id}', [ContactController::class, 'deleteContactData'])->name('contact.delete');
 
-    if(Auth::user('1')){
+
+
+    // if(Auth::user(1)){
         // services route
         Route::get('/backend/service', [ServiceController::class, 'index'])->name('backend.service');
         Route::get('/backend/service-create', [ServiceController::class, 'create'])->name('backend.service.create');
@@ -112,30 +107,23 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('/backend/slider/update/{id}', [SliderController::class, 'update'])->name('backend.slider.update');
         Route::get('/backend/slider/delete/{id}', [SliderController::class, 'delete'])->name('backend.slider.delete');
 
-     }
+    //  }
 
-    
 });
-
-// if (!env('ALLOW_REGISTRATION', false)) {
-//     Route::any('/register', function() {
-//         abort(403);
-//     });
-// }
+/****
+ * backen route Start
+ *******************************************************************/
+if (!env('ALLOW_REGISTRATION', false)) {
+    Route::any('/register', function() {
+        abort(403);
+    });
+}
 
 
 // authentication route
     // Auth::routes();
-    // Auth::routes([
-    //     'register' => false, // Registration Routes...
-    //     'reset' => false, // Password Reset Routes...
-    //     'verify' => false, // Email Verification Routes...
-    // ]);
-    //routes details
-    // Route::get('/login', [FrontendController::class, 'showLoginPage'])->name('login');
-
-    // Route::get('/login', [FrontendController::class, 'showLoginPage']);
-    // Route::post('/login', [LoginController::class, 'login'])->name('login');
-
-// Route::get('/register', [FrontendController::class, 'showRegisterPage'])->name('register');
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Auth::routes([
+        'register' => false, // Registration Routes...
+        'reset' => false, // Password Reset Routes...
+        'verify' => false, // Email Verification Routes...
+    ]);
