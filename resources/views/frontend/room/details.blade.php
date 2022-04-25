@@ -27,6 +27,14 @@
         </div>
     </section>
     <div class="container">
+
+        {{-- Alert section --}}
+        @if(session()->has('success'))
+            <div class="alert mt-4 alert-success" role="alert">
+                {{ session()->get('success') }}
+            </div>
+        @endif
+
         <div class="row">
             <!-- Slider -->
             <section class="room-slider standard-slider mt50">
@@ -35,7 +43,7 @@
                         {{-- <div class="item">
                             <a href="{{ asset($img->img_src) }}" data-rel="prettyPhoto[gallery1]"><img src="{{ asset($img->img_src) }}" alt="Bed" class="img-responsive" /></a>
                         </div> --}}
-                        
+
                         @foreach ($single_room_data->roomTypeImages as $img)
                             <div class="item">
                                 <a href="{{ asset($img->img_src) }}" data-rel="prettyPhoto[{{ $img->id }}]"><img src="{{ asset($img->img_src) }}" alt="Bed" class="img-responsive" width="100%" style="object-fit: cover" /></a>
@@ -60,6 +68,10 @@
                         {{-- <div id="message"></div> --}}
                         <!-- Error message display -->
                         <div class="form-group">
+                            <label for="customerName">Name <strong class="text-danger">*</strong></label>
+                            <input name="customer_name" type="text" id="customerName" value="" class="form-control" placeholder="Please enter your Name" required/>
+                        </div>
+                        <div class="form-group">
                             <label for="customerPhone" accesskey="E">Phone Number <strong class="text-danger">*</strong></label>
                             <input name="customer_phone" type="text" id="customerPhone" value="" class="form-control" placeholder="Please enter your Phone Number" />
                         </div>
@@ -81,7 +93,6 @@
                         <div class="form-group">
                             <label for="roomAvailable">Room Available<span class="text-danger">*</span></label>
                             <select class="form-control room-list-id" name="room_id" id="roomAvailable" >
-                                
                             </select>
                         </div>
 
@@ -131,19 +142,27 @@
                     </div>
                 </div>
                 @endforeach
-                
-
             </div>
         </div>
     </section>
 
+
+
     @section('frontend-script')
     <script>
         $(document).ready(function(){
+
+            // remove alert after a period of time
+            setTimeout(() => {
+                $('.alert').remove();
+            }, 5000);
+
+
+            // view room options on selcted date
             $(".checkindate").on('blur', function(){
                 let checkindate = $(this).val();
                 // console.log(checkindate);
-    
+
                 // send ajax request
                 $.ajax({
                     url: '/booking/available-rooms/'+ checkindate,
@@ -152,12 +171,13 @@
                         $('.room-list-id').html('<option>--Loading Data--</option>');
                     },
                     success: function(res){
-                        // console.log(res);
-                        let htmldata = '';
-                        $.each(res.data, function(index, row){
-                            htmldata += '<option value="'+row.room.id+'">'+row.room.room_title +'-'+row.roomtype.room_type_title+'</option>';
+                        $('#roomAvailable').find('option').remove().end();
+                        $.each(res.data, function(i, row)  {
+                            $('#roomAvailable').append($('<option>', {
+                                value: row.room.id,
+                                text: row.room.room_title + '-' + row.roomtype.room_type_title
+                            }));
                         });
-                        $('.room-list-id').html(htmldata);
                     }
                 });
             });

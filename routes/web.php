@@ -76,6 +76,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/booking',[BookingController::class, 'index'])->name('booking');
     Route::get('/booking-create',[BookingController::class, 'create'])->name('booking.create');
 
+    Route::post('/booking-approve/{id}',[BookingController::class, 'approveBooking'])->name('booking.approve');
     Route::get('/booking-edit/{id}',[BookingController::class, 'editBookingData'])->name('booking.edit');
     Route::post('/booking-update/{id}',[BookingController::class, 'updateBookingData'])->name('booking.update');
     Route::get('/booking-delete/{id}',[BookingController::class, 'deleteData'])->name('booking.delete');

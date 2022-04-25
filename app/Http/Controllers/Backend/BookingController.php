@@ -32,10 +32,11 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'room_id'   => 'required',
-            'checkin_date'   => 'required',
-            'checkout_date'   => 'required',
-            'customer_phone'   => 'required',
+            'room_id'           => 'required',
+            'checkin_date'      => 'required',
+            'checkout_date'     => 'required',
+            'customer_name'     => 'required',
+            'customer_phone'    => 'required',
         ]);
 
         $booking_data = new Booking();
@@ -43,6 +44,7 @@ class BookingController extends Controller
         $booking_data->room_id = $request->room_id;
         $booking_data->checkin_date = $request->checkin_date;
         $booking_data->checkout_date = $request->checkout_date;
+        $booking_data->customer_name = $request->customer_name;
         $booking_data->customer_phone = $request->customer_phone;
         $booking_data->booking_status = '0';
         $booking_data->save();
@@ -58,10 +60,10 @@ class BookingController extends Controller
 
         try {
             $edit_data = Booking::findOrFail($id);
-         } 
+         }
          catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             abort(404);
-        } 
+        }
          return view('backend.booking.edit',compact('edit_data'));
     }
     /**
@@ -83,6 +85,18 @@ class BookingController extends Controller
         $booking_data->customer_name = $request->customer_name;
         $booking_data->customer_phone = $request->customer_phone;
         $booking_data->booking_status = $request->booking_status;
+        $booking_data->update();
+        return redirect()->route('booking')->with('success','Data Updated successfully');
+    }
+    /**
+     *  approve / disapprove booking
+     */
+    public function approveBooking(Request $request, $id)
+    {
+
+        $booking_data = Booking::findOrFail($id);
+
+        $booking_data->booking_status = !$booking_data->booking_status;
         $booking_data->update();
         return redirect()->route('booking')->with('success','Data Updated successfully');
     }

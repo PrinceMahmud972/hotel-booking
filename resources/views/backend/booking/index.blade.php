@@ -43,16 +43,19 @@
                                         <span class="badge badge-success">Approved</span>
                                     @endif
                                 </td>
+                                <td>
+                                    <form action="{{ route('booking.approve', $data->id) }}" method="POST">
+                                        @csrf
+                                        <button class="btn btn-success btn-sm mt-2">
+                                            {{ $data->booking_status ? 'Draft' : 'Approve' }}
+                                        </button>
+                                    </form>
+
                                 @if (Auth::user()->role == '1')
-                                    <td>
-                                        <a href="{{ route('booking.edit', $data->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                        <a onclick="return confirm('Are You Sure to Delete this data?')" href="{{ route('booking.delete', $data->id) }}" class="btn btn-danger btn-sm">Delete</a>
-                                    </td>
-                                    @else
-                                    <td>
-                                        <a onclick="return confirm('Are You Sure to Delete this data?')" href="{{ route('booking.delete', $data->id) }}" class="btn btn-primary btn-sm">Delete</a>
-                                    </td>
+                                    <a href="{{ route('booking.edit', $data->id) }}" class="btn btn-primary btn-sm mt-2">Edit</a>
                                 @endif
+                                    <a onclick="return confirm('Are You Sure to Delete this data?')" href="{{ route('booking.delete', $data->id) }}" class="btn btn-danger btn-sm mt-2">Delete</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
